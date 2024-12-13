@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Game Library :3</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Video Game Library :3</h1>
+        <p>Discover, play, and review your favorite games, and manage your friendships!</p>
+        <div class="user-info">
+            <span>Welcome {{ username }}!</span>
+            <a href="/login" class="logout-btn">Logout</a>
+            <br> <br/>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/search_games">Search</a></li>
+                <li><a href="/my_games">My Games</a></li>
+                <li><a href="/manage_friends">Friends</a></li>
+                <li><a href="/reviews">Your Reviews</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Search Games</h1>
+    <form method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" placeholder="Enter game title">
+        <br>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" placeholder="Enter genre">
+        <br>
+        <label for="developer">Developer:</label>
+        <input type="text" id="developer" name="developer" placeholder="Enter developer">
+        <br>
+        <button type="submit">Search</button>
+    </form>
+    <a href="/">Back to Home</a>
+</body>
+</html>
