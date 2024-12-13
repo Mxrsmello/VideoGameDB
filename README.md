@@ -21,7 +21,8 @@ The database stores a range of game-specific details, including:
 
 ## Technologies Used
 - **SQLite3**: A lightweight, self-contained SQL database engine that serves as the back-end database for this project.
-- **SQL**: SQL queries are used to insert, update, delete, and query information from the database, supporting comprehensive data manipulation and retrieval.
+- **Flask**: A Python micro-framework used to create the back-end logic and API endpoints.
+- **HTML/CSS**: Utilized for designing the front-end user interface, providing an interactive and visually appealing experience for users.
 
 ## Project Structure
 - **Database Tables**:
@@ -30,6 +31,14 @@ The database stores a range of game-specific details, including:
   - `Games`: Holds core information about each game, including developer details, genres, and platforms.
   - `Ratings`: Stores user ratings for each game, enabling personalized recommendations.
   - `Owns`: Tracks ownership details for each user’s gaming library.
+
+- **Frontend**:
+  - Built with HTML and CSS to create a dynamic and user-friendly interface.
+  - Pages include game library display, friend interactions, and review/rating forms.
+
+- **Backend**:
+  - Flask handles routing between the front-end and database.
+  - RESTful API endpoints to perform CRUD operations (Create, Read, Update, Delete) on the database tables.
 
 ## Usage
 This project is intended as a personal gaming catalog application, where users can:
@@ -41,9 +50,17 @@ The design prioritizes ease of use for tracking and expanding personal gaming co
 
 ## Installation & Setup
 1. Clone the repository.
-2. Ensure SQLite3 is installed on your system.
-3. Load the database schema into an SQLite environment to initialize the tables.
-4. Execute the SQL queries to interact with the database.
+2. Ensure SQLite3 and Python are installed on your system.
+3. Install Flask using pip:
+   ```
+   pip install flask
+   ```
+4. Load the database schema into an SQLite environment to initialize the tables.
+5. Start the Flask server to enable the back-end connection:
+   ```
+   python app.py
+   ```
+6. Open the front-end in a web browser to access the application interface.
 
 ## Contributors
 Marcelo Ramirez & Marian Zuniga
