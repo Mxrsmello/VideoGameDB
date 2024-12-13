@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Games</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+<body>
+    <header>
+        <h1>Video Game Library :3</h1>
+        <p>Discover, play, and review your favorite games, and manage your friendships!</p>
+        <div class="user-info">
+            <span>Welcome {{ username }}!</span>
+            <a href="/login" class="logout-btn">Logout</a>
+            <br> <br/>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/search_games">Search</a></li>
+                <li><a href="/my_games">My Games</a></li>
+                <li><a href="/manage_friends">Friends</a></li>
+                <li><a href="/reviews">Your Reviews</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Search Results</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Developer</th>
+            <th>Base Cost</th>
+            <th>Genres</th>
+            <th>Actions</th>
+        </tr>
+        {% for game in games %}
+        <tr>
+            <td>{{ game[1] }}</td>
+            <td>{{ game[2] }}</td>
+            <td>${{ game[3] }}</td>
+            <td>{{ game[4] }}</td>
+            <td>
+                <a href="/game_details/{{ game[0] }}">View Details</a>
+                <form action="/add_to_library/{{ game[0] }}" method="POST" style="display:inline;">
+                    <button type="submit">Add to Library</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/search_games">New Search</a>
+    <a href="/">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reviews</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Video Game Library :3</h1>
+        <p>Check out the games you've reviewed and your ratings!</p>
+        <div class="user-info">
+            <span>Welcome {{ username }}!</span>
+            <a href="/login" class="logout-btn">Logout</a>
+            <br><br>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/search_games">Search</a></li>
+                <li><a href="/my_games">My Games</a></li>
+                <li><a href="/manage_friends">Friends</a></li>
+                <li><a href="/reviews">Your Reviews</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>My Reviews</h1>
+
+    {% if no_reviews %}
+        <p>You haven't reviewed any games yet. Start playing and sharing your thoughts!</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Developer</th>
+                    <th>Base Cost</th>
+                    <th>Release Year</th>
+                    <th>Your Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for review in reviews %}
+                <tr>
+                    <td>{{ review[0] }}</td>
+                    <td>{{ review[3] }}</td>
+                    <td>${{ review[1] }}</td>
+                    <td>{{ review[2] }}</td>
+                    <td>{{ review[4] }}/5</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <a href="/">Back to Home</a>
+</body>
+</html>

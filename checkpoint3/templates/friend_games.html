@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manage Friends</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Video Game Library :3</h1>
+            <p>Discover, play, and review your favorite games, and manage your friendships!</p>
+            <div class="user-info">
+                <span>Welcome {{ username }}!</span>
+                <a href="/login" class="logout-btn">Logout</a>
+                <br> <br/>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/search_games">Search</a></li>
+                    <li><a href="/my_games">My Games</a></li>
+                    <li><a href="/manage_friends">Friends</a></li>
+                    <li><a href="/reviews">Your Reviews</a></li>
+                </ul>
+            </nav>
+        </header>
+    <header>
+        <h1>{{ friend_name }}'s Games</h1>
+    </header>
+
+    <table>
+        <tr>
+            <th>Game Title</th>
+            <th>Owned by You</th>
+        </tr>
+        {% for game in games_with_ownership %}
+        <tr>
+            <td>{{ game.title }}</td>
+            <td>
+                <input type="checkbox" disabled {% if game.owned %}checked{% endif %}>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/manage_friends">Back to Friends</a>
+</body>
+</html>

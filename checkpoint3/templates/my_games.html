@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Games</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Video Game Library :3</h1>
+        <p>Discover, play, and review your favorite games, and manage your friendships!</p>
+        <div class="user-info">
+            <span>Welcome {{ username }}!</span>
+            <a href="/login" class="logout-btn">Logout</a>
+            <br> <br/>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/search_games">Search</a></li>
+                <li><a href="/my_games">My Games</a></li>
+                <li><a href="/manage_friends">Friends</a></li>
+                <li><a href="/reviews">Your Reviews</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>My Games</h1>
+    {% if games %}
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Base Cost</th>
+                <th>Date Purchased</th>
+                <th>Last Played</th>
+                <th>Actions</th>
+            </tr>
+            {% for game in games %}
+            <tr>
+                <td>{{ game[1] }}</td> <!-- Game Title -->
+                <td>${{ game[2] }}</td> <!-- Base Cost -->
+                <td>{{ game[3] }}</td> <!-- Date Purchased -->
+                <td>{{ game[4] if game[4] else "Not Played Yet" }}</td> <!-- Last Played (if available) -->
+                <td>
+                    <a href="javascript:void(0);" onclick="playGame({{ game[0] }}, this.parentElement.previousElementSibling)">
+                        Play
+                    </a> |
+                    <a href="/write_review/{{ game[0] }}">Review</a> |
+                    <a href="/game_details/{{ game[0] }}">Details</a>
+                </td>
+                                
+            </tr>            
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>You haven't purchased any games yet!</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>
+
+<script>
+    function playGame(gameId, lastPlayedCell) {
+        // Send a POST request to update the "Last Played" date
+        fetch(`/play/${gameId}`, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update the "Last Played" column in the table
+                lastPlayedCell.textContent = data.last_played;
+            } else {
+                console.error('Error updating Last Played:', data.error);
+            }
+        })
+        .catch(error => console.error('Request failed:', error));
+    }
+</script>
